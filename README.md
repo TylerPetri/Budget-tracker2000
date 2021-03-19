@@ -6,7 +6,7 @@
 
 Can I afford another coffee? Probably! Time to check the budget tracker 2000! Enter a name, a value, and selected whether it's an expense or deposit!
 
-Deployed app: 
+Deployed app: https://budget-tracker2000.herokuapp.com/
 
 ![Dashboard](public/images/budget.PNG)
 
