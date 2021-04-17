@@ -42,17 +42,30 @@
   </div>
 
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js").then(reg => {
-          console.log("We found your service worker file!", reg);
-        });
-      });
-    }
+    if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+      if (registration.installing) {
+        const sw = registration.installing || registration.waiting;
+        sw.onstatechange = function() {
+          if (sw.state === "installed") {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            window.location.reload();
+          }
+        }
+      }
+      else if (registration.active) console.log("ServiceWorker already installed");
+    }, function(err) {
+      // registration failed
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="db.js"></script>
+  <!-- <script src="db.js"></script> -->
   <script src="index.js"></script>
 </body>
 </html>
